@@ -42,6 +42,8 @@ void setup()
   servo3.write(dataServo3+dirServo3Offset);//goes to dataServo3 degrees 
   servo4.write(dataServo4+dirServo4Offset);//goes to dataServo4 degrees 
   servo5.write(dataServo5+dirServo5Offset);//goes to dataServo5 degrees 
+
+  Serial.begin(115200);
 }
 void loop()
 {
@@ -62,5 +64,12 @@ void loop()
   dataServo3 = val3;
   dataServo4 = val4;
   dataServo5 = val5;
+
+  Serial.print("A0: "); Serial.print(val1);
+  Serial.print("\tA1: "); Serial.print(val2);
+  Serial.print("\tA2: "); Serial.print(val3);
+  Serial.print("\tA3: "); Serial.print(val4);
+  Serial.print("\tA6: "); Serial.println(val5);
+
   delay(50);//wait for 0.05second
 }

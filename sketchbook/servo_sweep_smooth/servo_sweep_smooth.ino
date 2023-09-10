@@ -9,7 +9,7 @@ void setup()
 const int min_angle=0;
 const int max_angle=180;
 const int angle_delta = 5;
-const int time_delta = 10;
+const int time_delta = 50; //don't make this lower than 30
 
 void loop()
 {

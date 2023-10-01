@@ -5,71 +5,98 @@ Website: www.adeept.com
 E-mail: support@adeept.com
 Author: Tomp
 Date: 2020/12/12
+
+Modifications by JF:
+- Refactored code for readability
 ***********************************************************/
 #include <Servo.h>
-Servo servo1;//create servo object to control a servo
-Servo servo2;//create servo object to control a servo
-Servo servo3;//create servo object to control a servo
-Servo servo4;//create servo object to control a servo
-Servo servo5;//create servo object to control a servo
-//The following can be modified according to your specific needs
-int dataServo1 = 90; // Servo 1 rotation range(dataServo1=0~180)
-int dataServo2 = 90; // Servo 2 rotation range(dataServo2=0~180) 
-int dataServo3 = 90; // Servo 3 rotation range(dataServo3=0~180)
-int dataServo4 = 90; // Servo 4 rotation range(dataServo4=0~180)
-int dataServo5 = 90; // Servo 5 rotation range(dataServo5=35~90)
 
-float dirServo1Offset = 0;    // define a variable for deviation(degree) of the servo
-float dirServo2Offset = 0;    // define a variable for deviation(degree) of the servo
-float dirServo3Offset = 0;    // define a variable for deviation(degree) of the servo
-float dirServo4Offset = 0;    // define a variable for deviation(degree) of the servo
-float dirServo5Offset = 0;    // define a variable for deviation(degree) of the servo
-int val1;
-int val2;
-int val3;
-int val4;
-int val5;
+// create five different servo motor objects
+Servo servo1;
+Servo servo2;
+Servo servo3;
+Servo servo4;
+Servo servo5;
+
+// enumerate each pin from the Arduino for each servo motor
+const int servo1_pin = 9;
+const int servo2_pin = 6;
+const int servo3_pin = 5;
+const int servo4_pin = 3;
+const int servo5_pin = 11;
+
+// enumerate each analog input pin each potentiometer is connected on the Arduino
+const int pot1_pin = A0;
+const int pot2_pin = A1;
+const int pot3_pin = A2;
+const int pot4_pin = A3;
+const int pot5_pin = A6;
+
+// set initial angular positions for the servo motors
+const int servo1_initial_position = 90;
+const int servo2_initial_position = 90;
+const int servo3_initial_position = 90;
+const int servo4_initial_position = 90;
+const int servo5_initial_position = 90;
+
 void setup()
 {
-  servo1.attach(9);//attachs the servo1 on pin 9 to servo object
-  servo2.attach(6);//attachs the servo2 on pin 6 to servo object
-  servo3.attach(5);//attachs the servo3 on pin 5 to servo object
-  servo4.attach(3);//attachs the servo4 on pin 3 to servo object
-  servo5.attach(11);//attachs the servo5 on pin 11 to servo object
   
-  servo1.write(dataServo1+dirServo1Offset);//goes to dataServo1 degrees 
-  servo2.write(dataServo2+dirServo2Offset);//goes to dataServo2 degrees 
-  servo3.write(dataServo3+dirServo3Offset);//goes to dataServo3 degrees 
-  servo4.write(dataServo4+dirServo4Offset);//goes to dataServo4 degrees 
-  servo5.write(dataServo5+dirServo5Offset);//goes to dataServo5 degrees 
+  // set potentiometer ports to inputs
+  pinMode(pot1_pin, INPUT);
+  pinMode(pot2_pin, INPUT);
+  pinMode(pot3_pin, INPUT);
+  pinMode(pot4_pin, INPUT);
+  pinMode(pot5_pin, INPUT);
+  
+  // attach all servo objects to their correct pins
+  servo1.attach(servo1_pin);
+  servo2.attach(servo2_pin);
+  servo3.attach(servo3_pin);
+  servo4.attach(servo4_pin);
+  servo5.attach(servo5_pin);
+  
+  // command the servos to go to their initial position
+  servo1.write(servo1_initial_position);//goes to dataServo1 degrees 
+  servo2.write(servo2_initial_position);//goes to dataServo2 degrees 
+  servo3.write(servo3_initial_position);//goes to dataServo3 degrees 
+  servo4.write(servo4_initial_position);//goes to dataServo4 degrees 
+  servo5.write(servo5_initial_position);//goes to dataServo5 degrees 
 
+  // initialize the serial port at 115200 baud
   Serial.begin(115200);
 }
 void loop()
 {
-  servo1.write(dataServo1+dirServo1Offset);//goes to dataServo1 degrees 
-  servo2.write(dataServo2+dirServo2Offset);//goes to dataServo2 degrees 
-  servo3.write(dataServo3+dirServo3Offset);//goes to dataServo3 degrees 
-  servo4.write(dataServo4+dirServo4Offset);//goes to dataServo4 degrees 
-  servo5.write(dataServo5+dirServo5Offset);//goes to dataServo5 degrees 
 
-  val1 = map(analogRead(0), 0, 1023, 0, 180);  
-  val2 = map(analogRead(1), 0, 1023, 0, 180);  
-  val3 = map(analogRead(2), 0, 1023, 0, 180);  
-  val4 = map(analogRead(3), 0, 1023, 0, 180);
-  val5 = map(analogRead(6), 0, 1023, 35, 90);  
- 
-  dataServo1 = val1;
-  dataServo2 = val2;
-  dataServo3 = val3;
-  dataServo4 = val4;
-  dataServo5 = val5;
+  // read the value from all the potentiometers
+  int pot1_reading = analogRead(pot1_pin);
+  int pot2_reading = analogRead(pot2_pin);
+  int pot3_reading = analogRead(pot3_pin);
+  int pot4_reading = analogRead(pot4_pin);
+  int pot5_reading = analogRead(pot5_pin);
 
-  Serial.print("A0: "); Serial.print(val1);
-  Serial.print("\tA1: "); Serial.print(val2);
-  Serial.print("\tA2: "); Serial.print(val3);
-  Serial.print("\tA3: "); Serial.print(val4);
-  Serial.print("\tA6: "); Serial.println(val5);
+  // convert those values [0,1023] into angles [0,180] 
+  int angle1 = map(pot1_reading, 0, 1023, 0, 180);  
+  int angle2 = map(pot2_reading, 0, 1023, 0, 180);  
+  int angle3 = map(pot3_reading, 0, 1023, 0, 180);  
+  int angle4 = map(pot4_reading, 0, 1023, 0, 180);  
+  int angle5 = map(pot5_reading, 0, 1023, 0, 180);  
 
-  delay(50);//wait for 0.05second
+  // command each motor to its angle
+  servo1.write(angle1);
+  servo2.write(angle2);
+  servo3.write(angle3);
+  servo4.write(angle4);
+  servo5.write(angle5);
+
+  // print out all the angles to the screen
+  Serial.print("Pot1: "); Serial.print(angle1);
+  Serial.print("\tPot2: "); Serial.print(angle2);
+  Serial.print("\tPot3: "); Serial.print(angle3);
+  Serial.print("\tPot4: "); Serial.print(angle4);
+  Serial.print("\tPot5: "); Serial.println(angle5);
+
+  // delay 50 ms 
+  delay(50);
 }

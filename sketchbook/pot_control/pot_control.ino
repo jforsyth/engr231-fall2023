@@ -57,11 +57,11 @@ void setup()
   servo5.attach(servo5_pin);
   
   // command the servos to go to their initial position
-  servo1.write(servo1_initial_position);//goes to dataServo1 degrees 
-  servo2.write(servo2_initial_position);//goes to dataServo2 degrees 
-  servo3.write(servo3_initial_position);//goes to dataServo3 degrees 
-  servo4.write(servo4_initial_position);//goes to dataServo4 degrees 
-  servo5.write(servo5_initial_position);//goes to dataServo5 degrees 
+  servo1.write(servo1_initial_position);
+  servo2.write(servo2_initial_position);
+  servo3.write(servo3_initial_position);
+  servo4.write(servo4_initial_position);
+  servo5.write(servo5_initial_position);
 
   // initialize the serial port at 115200 baud
   Serial.begin(115200);

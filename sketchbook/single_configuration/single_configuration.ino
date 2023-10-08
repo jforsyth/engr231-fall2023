@@ -112,16 +112,7 @@ void loop()
      its target position. Recommend values are: 50 - very slow, 20 - medium/smooth, 10 - fast
      
   */
-    // move to the first configuration
-  move_servo_to(servo1, 90, 10);
-  move_servo_to(servo2,90,10);
-  move_servo_to(servo3,90,10);
-  move_servo_to(servo4,90,10);
-  move_servo_to(servo5,90,10);
 
-  // hold for one second
-  delay(1000);
-  
   // move to the first configuration
   move_servo_to(servo1, 120, 10);
   move_servo_to(servo2,85,10);
@@ -132,15 +123,15 @@ void loop()
   // hold their for one second
   delay(1000);
 
-  // move to the second configuration
-  move_servo_to(servo1, 120, 10);
-  move_servo_to(servo2,85,10);
-  move_servo_to(servo3,0,10);
-  move_servo_to(servo4,0,10);
-  move_servo_to(servo5,60,10);
+  // move to the second configuration that is a short distane away
+  //move_servo_to(servo1, 120, 10);
+  //move_servo_to(servo2,85,10);
+  //move_servo_to(servo3,0,10);
+  //move_servo_to(servo4,0,10);
+  //move_servo_to(servo5,60,10);
 
   // hold their for one second
-  delay(1000);
+  //delay(1000);
 
   // repeat the loop...
 

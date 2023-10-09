@@ -30,9 +30,12 @@ void setup() {
   delay(1000);
 }
 
+/*
+* Function to adjust servo movement speed. Modify at your own risk...there be dragons...
+*/
 void move_servo_to(Servo& motor, int target_position, int step_delay)
 {
-  // assume a constant step size
+  // assume a constant step size of 1 degree
   const int step_size = 1;
 
   // check that a good value for the step delay is passed
@@ -72,13 +75,13 @@ void move_servo_to(Servo& motor, int target_position, int step_delay)
         movement_complete = true;
 
       }
-      // if the distance is negative then decrement by step size
+      // if the distance is negative then increment by step size
       else if (distance < 0)
       {
         motor.write(current_position + step_size);
       }
 
-      // the distance must be positve
+      // the distance must be positve then decrement by the step size
       else
       {
         motor.write(current_position - step_size);
@@ -117,11 +120,11 @@ void loop()
 
   // uncomment these lines and place in your own values
   // move to the first configuration
-  //move_servo_to(servo1, 120, 10);
-  //move_servo_to(servo2,85,10);
-  //move_servo_to(servo3,0,10);
-  //move_servo_to(servo4,0,10);
-  //move_servo_to(servo5,93,10);
+  move_servo_to(servo1, 120, 10);
+  move_servo_to(servo2,85,10);
+  move_servo_to(servo3,0,10);
+  move_servo_to(servo4,0,10);
+  move_servo_to(servo5,93,10);
 
   // hold their for one second
   delay(1000);

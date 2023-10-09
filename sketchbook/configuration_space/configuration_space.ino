@@ -138,7 +138,7 @@ void loop()
   //move_servo_to(servo5,60,10);
 
   // hold their for one second
-  //delay(1000);
+  delay(1000);
 
   // repeat the loop...
 

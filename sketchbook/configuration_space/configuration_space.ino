@@ -120,11 +120,11 @@ void loop()
 
   // uncomment these lines and place in your own values
   // move to the first configuration
-  move_servo_to(servo1, 120, 10);
-  move_servo_to(servo2,85,10);
-  move_servo_to(servo3,0,10);
-  move_servo_to(servo4,0,10);
-  move_servo_to(servo5,93,10);
+  //move_servo_to(servo1, 120, 10);
+  //move_servo_to(servo2,85,10);
+  //move_servo_to(servo3,0,10);
+  //move_servo_to(servo4,0,10);
+  //move_servo_to(servo5,93,10);
 
   // hold their for one second
   delay(1000);

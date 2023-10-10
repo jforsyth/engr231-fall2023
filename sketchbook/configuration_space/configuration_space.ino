@@ -45,7 +45,7 @@ void move_servo_to(Servo& motor, int target_position, int step_delay)
   }
 
   // ensure the value passed is between [0,180]
-  target_position = target_position%180;
+  target_position = target_position%181;
 
   // keep a flag of whether movement is complete
   // loop until done
@@ -112,7 +112,7 @@ void loop()
   /**
      Part 2: Use move_servo_to to set the position of each servo. The function has three parameters
      Servo Name: this must match the list of Servo objects from the top of the program
-     Target Position: the angle the motor is to be set to. Value should be [0,179] degrees
+     Target Position: the angle the motor is to be set to. Value should be [0,180] degrees
      Step Size: the time interval in milliseconds between which the motor will "step" a fixed distance. The smaller the step size, the "faster" the motor will approach
      its target position. Recommend values are: 50 - very slow, 20 - medium/smooth, 10 - fast
      

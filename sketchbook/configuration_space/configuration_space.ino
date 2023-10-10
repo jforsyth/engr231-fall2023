@@ -45,7 +45,14 @@ void move_servo_to(Servo& motor, int target_position, int step_delay)
   }
 
   // ensure the value passed is between [0,180]
-  target_position = target_position%181;
+  if(target_position < 0)
+  {
+    target_position = 0;
+  }
+  else if(target_position > 180)
+  {
+    target_position = 180;
+  }
 
   // keep a flag of whether movement is complete
   // loop until done
